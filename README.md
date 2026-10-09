@@ -1,32 +1,28 @@
-# React + TypeScript + Vite
+# SOBERDRIVE ESP32 Microcontroller Setup & Wiring Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This folder contains the embedded C++ firmware for the ESP32 vehicle-side safety controller.
 
-Currently, two official plugins are available:
+## Hardware Wiring Schematic
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Component | ESP32 GPIO Pin | Function |
+| :--- | :--- | :--- |
+| **MQ-3 Sensor (AO)** | `GPIO 34` | Alcohol Sensor Analog Output |
+| **MQ-2 Sensor (AO)** | `GPIO 35` | Gas / VOC Combustible Sensor Analog Output |
+| **MQ-135 Sensor (AO)**| `GPIO 32` | Air Quality VOC Sensor Analog Output |
+| **NEO-6M GPS TX** | `GPIO 16` | ESP32 UART2 RX |
+| **NEO-6M GPS RX** | `GPIO 17` | ESP32 UART2 TX |
+| **Ignition Relay IN**| `GPIO 26` | 5V Relay Control (Ignition Motor Cutoff) |
+| **Buzzer (+)** | `GPIO 25` | Piezo Alarm Buzzer |
+| **Status LED (+)** | `GPIO 33` | Wi-Fi Status Indicator LED |
 
-## React Compiler
+## Arduino IDE Required Libraries
+1. `TinyGPSPlus` by Mikal Hart
+2. `ArduinoJson` by Benoit Blanchon (v6 or v7)
+3. `WiFi` & `HTTPClient` (built-in ESP32 core)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Flashing Instructions
+1. Open `soberdrive_esp32.ino` in Arduino IDE.
+2. Select Board: **ESP32 Dev Module**.
+3. Update `WIFI_SSID` and `WIFI_PASSWORD`.
+4. Update `BACKEND_URL` to your Render FastAPI backend URL (e.g. `https://soberdrive.onrender.com/api/telemetry`) or local IP (`http://192.168.1.100:8000/api/telemetry`).
+5. Compile and flash to your ESP32.
