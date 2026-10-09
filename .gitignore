@@ -1,24 +1,24 @@
-# Node / Frontend
-node_modules/
-frontend/node_modules/
-frontend/dist/
-.DS_Store
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Python / Backend
-__pycache__/
-*.pyc
-*.pyo
-backend/__pycache__/
-backend/app/__pycache__/
-backend/alcoalto.db
-backend/soberdrive.db
-backend/venv/
-backend/.venv/
-.venv/
-env/
+node_modules
+dist
+dist-ssr
+*.local
 
-# IDE / System
-.vscode/
-.idea/
-*.swp
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
