@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased overflow-x-hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+}
+
+/* Custom sci-fi automotive scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #082f49;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Leaflet dark theme map container fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background-color: #0b0f19 !important;
+}
+
+.leaflet-tile {
+  filter: brightness(0.7) invert(1) contrast(1.2) hue-rotate(190deg) saturate(0.8);
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(6, 182, 212, 0.4) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3) !important;
+}
